@@ -13,9 +13,7 @@ function App() {
           Hello World
           <br></br>
           <button>
-            <a href='#taphere' /*onClick='showText'*/>
-              Tap Here
-            </a>
+            <a href='#taphere' /*onClick='showText'*/>Tap Here</a>
           </button>
         </div>
       </header>
