@@ -14,7 +14,7 @@ function App() {
     [0,3,6],
     [1,4,7],
     [2,5,8],
-    [0,4,5],
+    [0,4,8],
     [2,4,6]
   ]
 
@@ -24,17 +24,14 @@ const [allValuesFilled, setAllValuesFilled] = useState(false);
 const [scores, setScores] = useState({ xScore: 0, oScore: 0 })
 const [gameOver, setGameOver] = useState(false);
 const [resultMessage, setResultMessage] = useState("");
+
 const handleBoxClick = (boxIdx) => {
   
 const checkIfBoardIsFilled = (boardToCheck) => {
   const a = boardToCheck.every((value) => value !== null);
   setAllValuesFilled(a)
- 
- if (allValuesFilled) {
-   console.log('The board is completely filled!');
- }
 };
-  // console.log(boxIdx)
+ 
   if (!board[boxIdx]) {
     const newBoard = [...board];
     newBoard[boxIdx] = 'X'; // Replace 'X' with the appropriate value based on your game logic.
@@ -42,9 +39,6 @@ const checkIfBoardIsFilled = (boardToCheck) => {
     setBoard(newBoard);
     checkIfBoardIsFilled(newBoard);
   }
-
-
-
 
   const updatedBoard = board.map((value, idx) =>{
     if(idx === boxIdx) {
@@ -81,23 +75,9 @@ if(board.length){
   setBoard(Array(9).fill(null));
 }};
 
-// const [clearMessage, setResultMessage] = useState("");
-
-// useEffect(()=>{
-//   if (gameOver){
-//     const winner = checkWinner(board);
-//     setResultMessage("Cleared Box");  
-//   }
-// },[board, gameOver]);
-// }
-
-
 useEffect(() =>{
  
-  if (allValuesFilled) {
-    console.log('The board is completely filled!');
-  }
-  if (gameOver || allValuesFilled){
+  if (gameOver || allValuesFilled ){
     const winner = checkWinner(board);
     setResultMessage(
       winner ? `Game Over. "${winner}" is WINNER!` : "Game Over. It's a draw!"
@@ -117,13 +97,6 @@ const checkWinner = (board) => {
     }
   }
 }
-
-
-
-// const resetBoard = () => {
-//   setGameOver(false);
-//   setBoard(Array(9).fill(null))
-// }
 
   return (
     <div className='App'>
