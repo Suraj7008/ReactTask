@@ -1,18 +1,24 @@
+// Board.js
 import React from 'react'
-import { Box } from './Box'
+
+import {Box} from "./Box"
 import "./Board.css"
 
-
-export const Board = ({board, onClick}) => {
-  
+export const Board = ({ board, onClick }) => {
   return (
-    <div className='board'>
-        {board.map((value, idx) => {
-        return( <Box aria-label="Board" value={value} onClick={() => value === null && onClick(idx)} />)
-        
-        //it will trigger the onClick function only if the cell's value is null. 
-        // This check prevents clicking on cells that are already occupied.
+    <div className='board' role="grid" aria-label="table 3 row and 3 column">
+        {board.map(( value, idx ) => {
+          // const row = Math.floor(idx /3) +1;
+          // const col = (idx% 3)+ 1;
+          // // const arialabel= `${row} row ${col} col`;
+          // const arialabel= value ? value : `${row} row ${col} col`;
+
+            return( 
+            <Box key={idx} value={value} index={idx}
+            onClick={()=> value === null && onClick(idx)} 
+            />
+            );
         })}
-        </div>
-  )
-}
+    </div>
+  );
+};
