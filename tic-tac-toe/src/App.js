@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import './App.css';
 import { Board } from './Component/Board';
 import { Clear } from './Component/ClearButton';
@@ -97,12 +97,18 @@ const checkWinner = (board) => {
     }
   }
 }
-
+const firstElement = useRef(null);
+const onPressClear = (board) =>{
+    console.log("presed")
+        if(board && firstElement.current) {
+            firstElement.current.focus();
+        }
+      }
   return (
     <div className='App'>
       <Score scores={scores} xPlaying={xPlaying} />
       <Board board={board} onClick={gameOver ? clear : handleBoxClick} />
-      <Clear clearButton={clear} aria-label="Clear"/>
+      <Clear clearButton={clear} presedState={onPressClear} aria-label="Clear" />
       <div className="visually-hidden" aria-live="polite">
       {resultMessage}
       </div>
