@@ -39,7 +39,7 @@ export const Board = ({ board, onClick }) => {
         {board.map(( value, idx ) => {
 
             return( 
-            <Box key={idx} value={value} index={idx}
+            <Box  key={idx} value={value} index={idx}
             onClick={()=> value === null && onClick(idx)} 
             />
             );
